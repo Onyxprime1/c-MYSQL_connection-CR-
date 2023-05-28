@@ -1,0 +1,65 @@
+create database Asignacion2; -- con esto creamos la base de datos
+use Asignacion2; -- aqui enpesamos a usar la base de datos para crear eliminar o editar tables 
+
+create table Profesor(
+idP int primary key not null auto_increment,
+nombreP varchar(50),
+edadP int (10),
+telP int(10),
+correoP varchar(50),
+titulo varchar(50)
+);
+
+create table Clase(
+idC int primary key not null auto_increment,
+idP int,
+nombreC varchar(50),
+horarion varchar(25),
+salon varchar(25),
+constraint fk_idP foreign key(idP) references Profesor (idP)
+);
+
+create table Estudiante(
+idE int primary key not null auto_increment,
+nombreE varchar(50),
+edadE int (10),
+telE int(10),
+correoE varchar(50)
+);
+
+create table Asignacion(
+idA int primary key not null auto_increment,
+idC int,
+idE int,
+constraint fk_idC foreign key(idC) references Clase (idC),
+constraint fk_idE foreign key(idE) references Estudiante (idE)
+);
+
+insert into Profesor(nombreP, edadP, telP, correoP, titulo) value('Kevin Mazariegos',27,42478258,'ElbuenTioben@gmail.com','Ingenieria en sistemas');
+insert into Profesor(nombreP, edadP, telP, correoP, titulo) value('Edgar Paz',25,56982341,'YosoyTupadre@gmail.com','Ingenieria en sistemas');
+insert into Profesor(nombreP, edadP, telP, correoP, titulo) value('Mynor Montejo',30,23289632,'TengoAnciedad@gmail.com','Ingenieria en Mecatronica');
+insert into Profesor(nombreP, edadP, telP, correoP, titulo) value('Wilson Romero',29,6660666,'vivapeten@gmail.com','Ingenieria en sistemas');
+insert into Profesor(nombreP, edadP, telP, correoP, titulo) value('Mauro Can',40,82584742,'nosemeOcurenada@gmail.com','Ingenieria en Mecanica');
+
+insert into Clase(idP, nombreC, horarion, salon) value(4,'programacion 8','8:00 - 10:00','salon 201');
+insert into Clase(idP, nombreC, horarion, salon) value(1,'Calculo 3','8:00 - 10:00','salon 202');
+insert into Clase(idP, nombreC, horarion, salon) value(3,'fisica 10','8:00 - 10:00','salon 203');
+insert into Clase(idP, nombreC, horarion, salon) value(5,'base de datos','8:00 - 10:00','salon 205');
+insert into Clase(idP, nombreC, horarion, salon) value(2,'Calculo 1','8:00 - 10:00','salon 200');
+
+insert into Estudiante(nombreE, edadE, telE, correoE) value('Mayerli Pineda',20,42478258,'MegustaBadBuny@gmail.com');
+insert into Estudiante(nombreE, edadE, telE, correoE) value('Brayan Garcia',26,48572878,'DineroMony@gmail.com');
+insert into Estudiante(nombreE, edadE, telE, correoE) value('Guiyermo Mendes',24,42478258,'BadDestiny@gmail.com');
+insert into Estudiante(nombreE, edadE, telE, correoE) value('Jimmy Medina',28,12345678,'Drugs@gmail.com');
+
+insert into Asignacion(idC,idE) value(1,1);
+insert into Asignacion(idC,idE) value(1,2);
+insert into Asignacion(idC,idE) value(2,1);
+insert into Asignacion(idC,idE) value(3,1);
+
+select * from Profesor;
+select * from Clase;
+select * from Estudiante;
+select * from Asignacion;
+
+DELETE FROM Estudiante WHERE idE NOT IN (1, 2,3,4);
